@@ -1,7 +1,15 @@
 .header {
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   width: 145px;
+  flex: 2;
+}
+
+.input {
+  flex: 5;
 }
