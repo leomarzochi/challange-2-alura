@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <Logo/>
-      <Input />
+      <Input placeholder='Busque por algo'/>
 
     </header>
   )
