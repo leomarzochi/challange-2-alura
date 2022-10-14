@@ -1,0 +1,16 @@
+@import 'styles/_colors.scss';
+
+.input {
+  line-height: 1.5rem;
+  background: rgba($white, 0.16);
+  border-radius: 0.5rem;
+  border: none;
+  color: rgba($white, 0.64);
+  padding: 1rem 0.9rem;
+  &:hover {
+    background: rgba($white, 0.24);
+  }
+  &:focus {
+    outline: none;
+  }
+}
