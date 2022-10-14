@@ -13,4 +13,7 @@
   &:focus {
     outline: none;
   }
+  &::placeholder {
+    color: rgba($white, 0.64);
+  }
 }
