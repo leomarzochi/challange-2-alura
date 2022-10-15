@@ -4,12 +4,28 @@
 .menu {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  margin: 1rem 0;
+
+  &:hover > div {
+    background-color: rgba($light-blue, 0.64);
+  }
+
+  &:hover > p {
+    color: rgba($white, 0.72);
+  }
 
   &__icon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 3rem;
     height: 3rem;
     border-radius: 1rem;
-    background-color: $light-blue;
+    background-color: rgba($light-blue, 0.16);
+    & span {
+      color: rgba($white, 1);
+    }
   }
   &__title {
     font-family: $font-family;
