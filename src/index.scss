@@ -1,13 +1,13 @@
-@use 'styles/_normalize.css';
+@use 'styles/normalize.css';
+@use 'styles/colors' as colors;
+@use 'styles/constants' as constants;
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
-@import 'styles/colors';
-@import 'styles/constants';
 
 html {
-  background-color: $dark-blue;
+  background-color: colors.$dark-blue;
 }
 
 body {
-  font-family: $font-family;
+  font-family: constants.$font-family;
 }
