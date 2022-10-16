@@ -1,5 +1,8 @@
-.content {
+@use 'styles/constants' as constants;
 
+.content {
+  display: flex;
+  flex: 6.5;
 }
 
 .code-editor {
@@ -8,4 +11,10 @@
 
 .editor-options {
   flex: 2;
+}
+
+@media screen and (max-width: constants.$tablet) {
+  .content {
+    flex-direction: column;
+  }
 }
