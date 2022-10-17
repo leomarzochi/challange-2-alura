@@ -1,3 +1,5 @@
+@use 'styles/constants' as constants;
+
 .header {
   padding: 2rem;
   display: flex;
@@ -12,4 +14,10 @@
 
 .input {
   flex: 4.5;
+}
+
+@media screen and (max-width: constants.$mobile) {
+  .header {
+    padding: 1rem;
+  }
 }
