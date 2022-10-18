@@ -1,0 +1,11 @@
+@use 'styles/constants' as constants;
+
+.menu {
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: constants.$tablet) {
+  .menu {
+    margin-left: 0;
+  }
+}
