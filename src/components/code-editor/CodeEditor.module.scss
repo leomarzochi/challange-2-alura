@@ -5,6 +5,7 @@
   background-color: #FDD800;
   border-radius: constants.$radius;
   padding: 2rem;
+  margin-bottom: 2rem;
   &__header {
     background-color: colors.$dark-gray;
     border-radius: constants.$radius constants.$radius 0 0;
@@ -16,7 +17,6 @@
     border-radius: 0 0 constants.$radius constants.$radius;
   }
   &__body {
-    
     color: white;
     resize: none;
     border: none;
@@ -28,10 +28,6 @@
     overflow: hidden;
     min-height: 140px;
   }
-  
-  
-  
-  
 }
 .dot {
   height: 10px;
