@@ -1,0 +1,17 @@
+@use 'styles/constants' as constants;
+@use 'styles/colors' as colors;
+
+.color {
+  position: relative;
+  border: 1px solid colors.$white;
+  padding: 8px;
+  border-radius: constants.$radius;
+  &__container {
+    border-radius: 4px;
+    height: 2.4rem;
+  }
+  &__content {
+    visibility: hidden;
+    position: absolute;
+  }
+}
