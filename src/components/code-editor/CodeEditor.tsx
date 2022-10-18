@@ -1,3 +1,4 @@
+import {Button} from 'components';
 import styles from './CodeEditor.module.scss';
 
 export const CodeEditor = () => {
@@ -18,6 +19,7 @@ export const CodeEditor = () => {
           />
         </div>
       </div>
+      <Button type='outlined'>Visualizar com o highlight</Button>
     </>
   );
 }
