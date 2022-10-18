@@ -4,6 +4,13 @@
   margin-left: 2rem;
 }
 
+.form-container {
+  margin-bottom: 1rem;
+  & input, textarea {
+    margin-top: 1rem;
+  }
+}
+
 @media screen and (max-width: constants.$tablet) {
   .menu {
     margin-left: 0;
