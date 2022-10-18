@@ -1,7 +1,10 @@
 import styles from './Input.module.scss';
 
-export const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
-  return (
-    <input className={styles.input} {...props} />
-  )
-}
+type Props = React.DetailedHTMLProps<
+React.InputHTMLAttributes<HTMLInputElement>,
+HTMLInputElement
+>
+
+export const Input = (props: Props) => {
+  return <input className={styles.input} {...props} />;
+};
