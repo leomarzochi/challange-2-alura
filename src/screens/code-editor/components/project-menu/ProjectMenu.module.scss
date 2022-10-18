@@ -1,4 +1,5 @@
 @use 'styles/constants' as constants;
+@use 'styles/colors' as colors;
 
 .menu {
   margin-left: 2rem;
@@ -6,7 +7,7 @@
 
 .form-container {
   margin-bottom: 1rem;
-  & input, textarea {
+  & input, textarea, select {
     margin-top: 1rem;
   }
 }

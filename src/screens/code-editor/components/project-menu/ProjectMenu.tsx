@@ -1,4 +1,5 @@
 import {MenuTitle, Input, TextArea, Select} from "components";
+import {ColorPicker} from "components/color-picker/ColorPicker";
 import styles from './ProjectMenu.module.scss';
 
 export const ProjectMenu = () => {
@@ -12,7 +13,7 @@ export const ProjectMenu = () => {
       <MenuTitle>Personalizacao</MenuTitle>
       <div className={styles['form-container']}>
         <Select />
-        <Select />
+        <ColorPicker/>
       </div>
     </div>
   );
