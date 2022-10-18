@@ -1,3 +1,6 @@
+import styles from './Button.module.scss';
+import classNames from 'classnames';
+
 type ButtonType = 'filled' | 'outlined';
 
 interface Props {
@@ -5,8 +8,11 @@ interface Props {
   type: ButtonType
 }
 
-export const Button = ({children}: Props) => {
+export const Button = ({children, type}: Props) => {
   return (
-    <button>{children}</button>
+    <button className={classNames({
+      [styles.button]: true,
+      [styles['button--outlined']]: type === 'outlined'
+    })}>{children}</button>
   )
 }
