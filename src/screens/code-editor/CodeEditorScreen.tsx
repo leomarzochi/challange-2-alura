@@ -1,5 +1,6 @@
-import {Button, CodeEditor} from 'components';
+import { CodeEditor} from 'components';
 import styles from './CodeEditorScreen.module.scss';
+import {ProjectMenu} from './components/project-menu/ProjectMenu';
 
 export const CodeEditorScreen = () => {
   return (
@@ -7,7 +8,9 @@ export const CodeEditorScreen = () => {
       <div className={styles['code-editor']}>
         <CodeEditor/>
       </div>
-      <div className={styles['editor-options']}>aside menu</div>
+      <div className={styles['editor-options']}>
+        <ProjectMenu />
+      </div>
     </div>
   )
 }
