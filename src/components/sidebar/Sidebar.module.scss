@@ -3,17 +3,6 @@
 
 .sidebar {
   flex: 2;
-  &__title {
-    font-family: constants.$font-family;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: colors.$white;
-    margin: 0.5rem 0;
-  }
 }
 
 @media screen and (max-width: constants.$tablet) {
