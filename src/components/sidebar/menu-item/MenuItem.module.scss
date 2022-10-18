@@ -6,13 +6,14 @@
   align-items: center;
   cursor: pointer;
   margin: 1rem 0;
-
+  
   &:hover > div {
     background-color: rgba(colors.$light-blue, 0.64);
+    transition: background 300ms;
   }
-
   &:hover > p {
     color: rgba(colors.$white, 0.72);
+    transition: 300ms;
   }
 
   &__icon_container {

@@ -8,6 +8,7 @@
   border: none;
   color: rgba(colors.$white, 0.64);
   padding: 1rem 0.9rem;
+  transition: background 300ms;
   &:hover {
     background: rgba(colors.$white, 0.24);
   }
