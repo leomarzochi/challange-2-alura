@@ -1,0 +1,12 @@
+@use 'styles/constants' as constants;
+
+.content {
+  display: flex;
+  margin: 0 2rem;
+}
+
+@media screen and (max-width: constants.$mobile) {
+  .content {
+    margin: 0 1rem;
+  }
+}
