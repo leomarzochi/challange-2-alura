@@ -12,7 +12,8 @@ export const Button = ({children, type}: Props) => {
   return (
     <button className={classNames({
       [styles.button]: true,
-      [styles['button--outlined']]: type === 'outlined'
+      [styles['button--outlined']]: type === 'outlined',
+      [styles['button--filled']]: type === 'filled'
     })}>{children}</button>
   )
 }

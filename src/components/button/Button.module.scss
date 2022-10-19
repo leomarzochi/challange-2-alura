@@ -7,6 +7,7 @@
   padding: 1rem;
   border: none;
   transition: background 300ms;
+  margin-bottom: 2rem;
   &--outlined {
     background: rgba(colors.$light-blue, 0.08);
     color: rgba(colors.$white, 1);
@@ -17,8 +18,22 @@
       background: rgba(colors.$light-blue, 0.24);
     }
     &:active {
-      border: 4px solid rgba(colors.$light-blue, 0.24);
-      padding: .7rem;
+      outline: 4px solid rgba(colors.$light-blue, 0.24);
+      background: rgba(colors.$light-blue, 0.16);
+    }
+  }
+  &--filled {
+    background: colors.$light-blue;
+    color: colors.$dark-blue;
+    &:hover {
+      background: colors.$light-blue-200;
+    }
+    &:focus {
+      background: colors.$light-blue-100;
+    }
+    &:active {
+      outline: 4px solid rgba(colors.$light-blue, 0.72);
+      background: colors.$light-blue-200;
     }
   }
 }
