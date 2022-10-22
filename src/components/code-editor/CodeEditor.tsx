@@ -19,10 +19,10 @@ alura_challenge();
       setBuffer(content);
       setContent(hljs.highlight('javascript', content).value)
       setShowEditor(false)
-    } else {
-      setContent(buffer);
-      setShowEditor(true)
+      return;
     }
+    setContent(buffer);
+    setShowEditor(true)
   };
 
   return (
@@ -50,7 +50,7 @@ alura_challenge();
         </div>
       </div>
       <Button buttonStyle="outlined" onClick={handleHighlight}>
-        Visualizar com o highlight
+        {!showEditor ? 'Voltar ao modo de edição' : 'Visualizar com o highlight'}
       </Button>
     </>
   );
