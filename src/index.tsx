@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import {CodeEditorScreen} from 'screens/code-editor/CodeEditorScreen';
 import {Root} from 'screens/root/Root';
+import {RecoilRoot} from 'recoil';
 
 
 const router = createBrowserRouter([
@@ -29,9 +30,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RecoilRoot>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </RecoilRoot>
 );
 
 reportWebVitals();

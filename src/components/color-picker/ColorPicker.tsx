@@ -1,4 +1,6 @@
+import {colorState} from 'atoms/codeEditorAtom';
 import {useRef, useState} from 'react';
+import {useRecoilState} from 'recoil';
 import styles from './ColorPicker.module.scss';
 
 export const ColorPicker = () => {
@@ -7,7 +9,8 @@ export const ColorPicker = () => {
     colorPickerRef.current?.click();
   }
 
-  const [color, setColor] = useState('#6BD1FF')
+  const [color, setColor] = useRecoilState(colorState);
+
   return (
     <div className={styles.color}>
       <div className={styles.color__container} style={{'background': `${color}`}} onClick={handleFocus} />

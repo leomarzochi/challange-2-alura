@@ -13,7 +13,7 @@ export const ProjectMenu = () => {
       <MenuTitle>Personalizacao</MenuTitle>
       <div className={styles['form-container']}>
         <Select />
-        <ColorPicker/>
+        <ColorPicker />
         <Button buttonStyle="filled">Salvar projeto</Button>
       </div>
     </div>
