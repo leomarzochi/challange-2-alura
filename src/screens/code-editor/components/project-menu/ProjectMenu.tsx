@@ -14,7 +14,7 @@ export const ProjectMenu = () => {
       <div className={styles['form-container']}>
         <Select />
         <ColorPicker/>
-        <Button type="filled">Salvar projeto</Button>
+        <Button buttonStyle="filled">Salvar projeto</Button>
       </div>
     </div>
   );
