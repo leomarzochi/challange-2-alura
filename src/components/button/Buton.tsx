@@ -1,19 +1,20 @@
 import styles from './Button.module.scss';
 import classNames from 'classnames';
+import {ButtonHTMLAttributes} from 'react';
 
-type ButtonType = 'filled' | 'outlined';
+type BtnStyle = 'filled' | 'outlined';
 
-interface Props {
-  children: string,
-  type: ButtonType
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: string;
+  buttonStyle: BtnStyle;
 }
 
-export const Button = ({children, type}: Props) => {
+export const Button = ({children, buttonStyle, ...props}: ButtonProps) => {
   return (
-    <button className={classNames({
+    <button {...props} className={classNames({
       [styles.button]: true,
-      [styles['button--outlined']]: type === 'outlined',
-      [styles['button--filled']]: type === 'filled'
+      [styles['button--outlined']]: buttonStyle === 'outlined',
+      [styles['button--filled']]: buttonStyle === 'filled'
     })}>{children}</button>
   )
 }
