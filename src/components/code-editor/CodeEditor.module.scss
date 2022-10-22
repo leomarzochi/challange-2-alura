@@ -15,18 +15,24 @@
     padding: 0 1rem 1rem 1rem;
     background-color: colors.$dark-gray;
     border-radius: 0 0 constants.$radius constants.$radius;
+    position: relative;
   }
   &__body {
-    color: white;
+    padding: 0;
+    color: colors.$white;
+    background-color: colors.$dark-gray;
+    width: 100%;
     resize: none;
     border: none;
     font-family: 'Roboto Mono', monospace;
-    border: none;
     outline: none;
     box-shadow: none;
     display: block;
     overflow: hidden;
-    min-height: 140px;
+    min-height: 280px;
+  }
+  & code {
+    font-family: 'Roboto Mono', monospace;
   }
 }
 .dot {
