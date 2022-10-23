@@ -2,7 +2,6 @@ import {MenuItem} from './menu-item/MenuItem';
 import {FaCode, FaUsers} from 'react-icons/fa';
 import styles from './Sidebar.module.scss';
 import {MenuTitle} from 'components/menu-title/MenuTitle';
-import {Link} from 'react-router-dom'
 
 export const Sidebar = () => {
   return (

@@ -1,6 +1,5 @@
 import styles from './Button.module.scss';
 import classNames from 'classnames';
-import {ButtonHTMLAttributes} from 'react';
 
 type BtnStyle = 'filled' | 'outlined';
 

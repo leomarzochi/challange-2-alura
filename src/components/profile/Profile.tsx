@@ -33,7 +33,7 @@ export const Profile = () => {
           <>
             <Avatar className={styles.avatar} />
             <div style={{ width: '0.5rem' }} />
-            <TextBody>{windowSize.innerWidth.toString()}</TextBody>
+            <TextBody>John Doe</TextBody>
           </>
         ) : (
           <HiMenu size={32} color="white" />

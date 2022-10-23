@@ -1,5 +1,5 @@
 import {colorState} from 'atoms/codeEditorAtom';
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import {useRecoilState} from 'recoil';
 import styles from './ColorPicker.module.scss';
 

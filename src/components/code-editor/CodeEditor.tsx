@@ -3,7 +3,7 @@ import hljs from 'highlight.js';
 import { useEffect, useState } from 'react';
 import styles from './CodeEditor.module.scss';
 import 'highlight.js/styles/github.css';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { colorState, languageState } from 'atoms/codeEditorAtom';
 
 export const CodeEditor = () => {
@@ -20,14 +20,14 @@ alura_challenge();
 
   useEffect(() => {
     if(!showEditor) {
-      setContent(hljs.highlight(language, buffer).value);
+      setContent(hljs.highlight(language.name, buffer).value);
     }
-  }, [language]);
+  }, [language, showEditor, buffer]);
 
   const handleHighlight = () => {
     if (showEditor) {
       setBuffer(content);
-      setContent(hljs.highlight(language, content).value);
+      setContent(hljs.highlight(language.name, content).value);
       setShowEditor(false);
       return;
     }
