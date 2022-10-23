@@ -1,35 +1,18 @@
 import {Avatar} from 'components/avatar/Avatar';
 import {TextBody} from 'components/text-body/TextBody';
-import {useEffect, useState} from 'react';
 import {HiMenu} from 'react-icons/hi';
 
 import styles from './Profile.module.scss';
 
-export const Profile = () => {
+interface Props {
+  windowSize: number
+}
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize(getWindowSize())
-    }
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    }
-  }, [])
-
-  const getWindowSize = () => {
-    const {innerHeight, innerWidth} = window;
-    return {innerHeight, innerWidth};
-  }
-
-  const [windowSize, setWindowSize] = useState(getWindowSize());
-
+export const Profile = ({windowSize}: Props) => {
   return (
     <div className={styles.content}>
       <div className={styles.profile}>
-        {windowSize.innerWidth > 862 ? (
+        {windowSize > 862 ? (
           <>
             <Avatar className={styles.avatar} />
             <div style={{ width: '0.5rem' }} />
