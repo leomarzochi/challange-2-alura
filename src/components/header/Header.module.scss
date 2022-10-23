@@ -21,3 +21,9 @@
     padding: 1rem;
   }
 }
+
+@media screen and (max-width: constants.$tablet) {
+  .logo {
+    padding-right: 2rem;
+  }
+}
