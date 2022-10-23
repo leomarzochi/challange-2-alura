@@ -1,8 +1,9 @@
 import {atom} from "recoil";
+import {ProjectLanguage} from "screens/code-editor/components/project-menu/ProjectMenu";
 
-export const languageState = atom({
+export const languageState = atom<ProjectLanguage>({
   key: 'languageState',
-  default: 'javascript'
+  default: {name: 'Javascript', id: 'javascript'}
 })
 
 export const colorState = atom({
