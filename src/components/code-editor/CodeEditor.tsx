@@ -7,10 +7,10 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { colorState, languageState } from 'atoms/codeEditorAtom';
 
 export const CodeEditor = () => {
-  const [showEditor, setShowEditor] = useState(true);
-  const [buffer, setBuffer] = useState('');
   const color = useRecoilValue(colorState);
   const language = useRecoilValue(languageState);
+  const [showEditor, setShowEditor] = useState(true);
+  const [buffer, setBuffer] = useState('');
   const [content, setContent] = useState(`const alura_challenge = () => { 
   alert("awesome!"); 
 }
@@ -18,9 +18,11 @@ export const CodeEditor = () => {
 alura_challenge();
 `);
 
-  // useEffect(() => {
-  //  setContent(hljs.highlight(language, content).value);
-  // }, [language]);
+  useEffect(() => {
+    if(!showEditor) {
+      setContent(hljs.highlight(language, buffer).value);
+    }
+  }, [language]);
 
   const handleHighlight = () => {
     if (showEditor) {
