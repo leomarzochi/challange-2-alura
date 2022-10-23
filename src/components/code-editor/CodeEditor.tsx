@@ -1,16 +1,21 @@
 import { Button } from 'components';
 import hljs from 'highlight.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './CodeEditor.module.scss';
 import 'highlight.js/styles/github.css';
-import { useRecoilValue } from 'recoil';
-import { colorState, languageState } from 'atoms/codeEditorAtom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  codeEditorRefState,
+  colorState,
+  languageState,
+} from 'atoms/codeEditorAtom';
 
 export const CodeEditor = () => {
   const color = useRecoilValue(colorState);
   const language = useRecoilValue(languageState);
   const [showEditor, setShowEditor] = useState(true);
   const [buffer, setBuffer] = useState('');
+  const codeEditorRef = useSetRecoilState(codeEditorRefState);
   const [content, setContent] = useState(`const alura_challenge = () => { 
   alert("awesome!"); 
 }
@@ -19,7 +24,7 @@ alura_challenge();
 `);
 
   useEffect(() => {
-    if(!showEditor) {
+    if (!showEditor) {
       setContent(hljs.highlight(language.name, buffer).value);
     }
   }, [language, showEditor, buffer]);
@@ -37,7 +42,11 @@ alura_challenge();
 
   return (
     <>
-      <div style={{'backgroundColor': color}} className={styles.editor}>
+      <div
+        ref={(ref) => codeEditorRef(ref)}
+        style={{ backgroundColor: color }}
+        className={styles.editor}
+      >
         <div className={styles.editor__header}>
           <div className={styles.dot}></div>
           <div className={styles.dot}></div>

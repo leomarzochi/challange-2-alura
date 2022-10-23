@@ -1,9 +1,15 @@
+import {ReactNode} from "react";
 import {atom} from "recoil";
-import {ProjectLanguage} from "screens/code-editor/components/project-menu/ProjectMenu";
+import {ProjectLanguage} from "types";
 
 export const languageState = atom<ProjectLanguage>({
   key: 'languageState',
-  default: {name: 'Javascript', id: 'javascript'}
+  default: {id: 'javascript', name: 'Javascript'}
+})
+
+export const codeEditorRefState = atom<HTMLDivElement | null>({
+  key: 'codeEditorRefState',
+  default: null
 })
 
 export const colorState = atom({
