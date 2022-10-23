@@ -54,8 +54,8 @@ export const ProjectMenu = () => {
           mapOptionToLabel={(option: ProjectLanguage) => option.name}
         />
         <ColorPicker />
+        <Button buttonStyle='outlined' onClick={onButtonClick}>Baixar imagem</Button>
         <Button buttonStyle="filled">Salvar projeto</Button>
-        <button onClick={onButtonClick}>tete</button>
       </div>
     </div>
   );
