@@ -16,12 +16,14 @@ export const ProjectMenu = () => {
   const [description, setDescription] = useState('');
   const color = useRecoilValue(colorState);
   const snippet = useRecoilValue(codeEditorState);
+  const [loading, setLoading] = useState(false);
 
   const languages: readonly ProjectLanguage[] = [
     { name: 'Javascript', id: 'javascript' },
     { name: 'Python', id: 'python' },
     { name: 'Java', id: 'java' },
     { name: 'Kotlin', id: 'kotlin' },
+    { name: 'Rust', id: 'rust' },
   ];
   const ref = useRecoilValue(codeEditorRefState);
 
@@ -42,6 +44,11 @@ export const ProjectMenu = () => {
   }, [ref]);
 
   const handleSaveProject = async () => {
+    setLoading(true);
+
+    if(!title.length || !description.length) {
+      alert('todos os campos são obrigatórios');
+    }
     try {
       let { error } = await supabase.from('snippets').upsert({
         name: title,
@@ -53,7 +60,11 @@ export const ProjectMenu = () => {
       if (error) {
         throw error;
       }
+      setTitle('');
+      setDescription('');
+      setLoading(false)
     } catch (e) {
+      setLoading(false)
       console.log(e);
     }
   };
@@ -87,7 +98,7 @@ export const ProjectMenu = () => {
         <Button buttonStyle="outlined" onClick={onButtonClick}>
           Baixar imagem
         </Button>
-        <Button buttonStyle="filled" onClick={handleSaveProject}>
+        <Button disabled={loading} buttonStyle="filled" onClick={handleSaveProject}>
           Salvar projeto
         </Button>
       </div>
