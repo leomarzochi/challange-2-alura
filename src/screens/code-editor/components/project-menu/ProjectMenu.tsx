@@ -51,6 +51,7 @@ export const ProjectMenu = () => {
 
     if (!title.length || !description.length) {
       alert('todos os campos são obrigatórios');
+      return;
     }
     try {
       let { error } = await supabase.from('snippets').upsert({
