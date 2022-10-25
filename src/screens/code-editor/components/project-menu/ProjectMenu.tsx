@@ -1,5 +1,6 @@
 import { toPng } from 'html-to-image';
 import { useCallback, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { codeEditorRefState, codeEditorState, colorState, languageState } from 'atoms/codeEditorAtom';
@@ -9,6 +10,8 @@ import { supabase } from 'supabaseClient';
 import { ProjectLanguage } from 'types/shared';
 
 import styles from './ProjectMenu.module.scss';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProjectMenu = () => {
   const [language, setLanguage] = useRecoilState(languageState);
@@ -46,7 +49,7 @@ export const ProjectMenu = () => {
   const handleSaveProject = async () => {
     setLoading(true);
 
-    if(!title.length || !description.length) {
+    if (!title.length || !description.length) {
       alert('todos os campos são obrigatórios');
     }
     try {
@@ -62,46 +65,74 @@ export const ProjectMenu = () => {
       }
       setTitle('');
       setDescription('');
-      setLoading(false)
+      setLoading(false);
+      toast.success('️‍🔥️‍🔥️‍🔥 Salvo com sucesso', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
     } catch (e) {
-      setLoading(false)
+      setLoading(false);
       console.log(e);
     }
   };
 
   return (
-    <div className={styles.menu}>
-      <MenuTitle>seu projeto</MenuTitle>
-      <div className={styles['form-container']}>
-        <Input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          type="text"
-          placeholder="Nome do seu projeto"
-        />
-        <TextArea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Descrição do seu projeto"
-        />
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <div className={styles.menu}>
+        <MenuTitle>seu projeto</MenuTitle>
+        <div className={styles['form-container']}>
+          <Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            placeholder="Nome do seu projeto"
+          />
+          <TextArea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Descrição do seu projeto"
+          />
+        </div>
+        <MenuTitle>Personalizacao</MenuTitle>
+        <div className={styles['form-container']}>
+          <Select
+            value={language}
+            options={languages}
+            onChange={setLanguage}
+            mapOptionToValue={(option: ProjectLanguage) => option.id}
+            mapOptionToLabel={(option: ProjectLanguage) => option.name}
+          />
+          <ColorPicker />
+          <Button buttonStyle="outlined" onClick={onButtonClick}>
+            Baixar imagem
+          </Button>
+          <Button
+            disabled={loading}
+            buttonStyle="filled"
+            onClick={handleSaveProject}
+          >
+            Salvar projeto
+          </Button>
+        </div>
       </div>
-      <MenuTitle>Personalizacao</MenuTitle>
-      <div className={styles['form-container']}>
-        <Select
-          value={language}
-          options={languages}
-          onChange={setLanguage}
-          mapOptionToValue={(option: ProjectLanguage) => option.id}
-          mapOptionToLabel={(option: ProjectLanguage) => option.name}
-        />
-        <ColorPicker />
-        <Button buttonStyle="outlined" onClick={onButtonClick}>
-          Baixar imagem
-        </Button>
-        <Button disabled={loading} buttonStyle="filled" onClick={handleSaveProject}>
-          Salvar projeto
-        </Button>
-      </div>
-    </div>
+    </>
   );
 };
