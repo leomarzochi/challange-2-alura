@@ -1,6 +1,6 @@
-import {ReactNode} from "react";
-import {atom} from "recoil";
-import {ProjectLanguage} from "types";
+import { atom } from "recoil";
+
+import { ProjectLanguage } from "types";
 
 export const languageState = atom<ProjectLanguage>({
   key: 'languageState',
@@ -15,4 +15,14 @@ export const codeEditorRefState = atom<HTMLDivElement | null>({
 export const colorState = atom({
   key: 'colorState',
   default: '#6BD1FF'
+})
+
+export const codeEditorState = atom({
+  key: 'codeEditorState',
+  default: `const alura_challenge = () => { 
+    alert("awesome!"); 
+  }
+  
+  alura_challenge();
+  `
 })

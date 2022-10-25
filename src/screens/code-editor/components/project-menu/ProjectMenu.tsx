@@ -1,14 +1,21 @@
-import { codeEditorRefState, languageState } from 'atoms/codeEditorAtom';
-import { MenuTitle, Input, TextArea, Select, Button } from 'components';
-import { ColorPicker } from 'components/color-picker/ColorPicker';
-import {toPng} from 'html-to-image';
-import {useCallback} from 'react';
+import { toPng } from 'html-to-image';
+import { useCallback, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import {ProjectLanguage} from 'types/shared';
+
+import { codeEditorRefState, codeEditorState, colorState, languageState } from 'atoms/codeEditorAtom';
+import { Button, Input, MenuTitle, Select, TextArea } from 'components';
+import { ColorPicker } from 'components/color-picker/ColorPicker';
+import { supabase } from 'supabaseClient';
+import { ProjectLanguage } from 'types/shared';
+
 import styles from './ProjectMenu.module.scss';
 
 export const ProjectMenu = () => {
   const [language, setLanguage] = useRecoilState(languageState);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const color = useRecoilValue(colorState);
+  const snippet = useRecoilValue(codeEditorState);
 
   const languages: readonly ProjectLanguage[] = [
     { name: 'Javascript', id: 'javascript' },
@@ -19,30 +26,53 @@ export const ProjectMenu = () => {
   const ref = useRecoilValue(codeEditorRefState);
 
   const onButtonClick = useCallback(() => {
-    console.log(ref);
-    
     if (ref === null) {
-      return
+      return;
     }
-
-    toPng(ref, { cacheBust: true, })
+    toPng(ref, { cacheBust: true })
       .then((dataUrl) => {
-        const link = document.createElement('a')
-        link.download = 'my-image-name.png'
-        link.href = dataUrl
-        link.click()
+        const link = document.createElement('a');
+        link.download = 'my-image-name.png';
+        link.href = dataUrl;
+        link.click();
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [ref])
-  
+        console.log(err);
+      });
+  }, [ref]);
+
+  const handleSaveProject = async () => {
+    try {
+      let { error } = await supabase.from('snippets').upsert({
+        name: title,
+        language: language.name,
+        description,
+        color,
+        snippet,
+      });
+      if (error) {
+        throw error;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className={styles.menu}>
       <MenuTitle>seu projeto</MenuTitle>
       <div className={styles['form-container']}>
-        <Input type="text" placeholder="Nome do seu projeto" />
-        <TextArea placeholder="Descrição do seu projeto" />
+        <Input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+          placeholder="Nome do seu projeto"
+        />
+        <TextArea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Descrição do seu projeto"
+        />
       </div>
       <MenuTitle>Personalizacao</MenuTitle>
       <div className={styles['form-container']}>
@@ -54,8 +84,12 @@ export const ProjectMenu = () => {
           mapOptionToLabel={(option: ProjectLanguage) => option.name}
         />
         <ColorPicker />
-        <Button buttonStyle='outlined' onClick={onButtonClick}>Baixar imagem</Button>
-        <Button buttonStyle="filled">Salvar projeto</Button>
+        <Button buttonStyle="outlined" onClick={onButtonClick}>
+          Baixar imagem
+        </Button>
+        <Button buttonStyle="filled" onClick={handleSaveProject}>
+          Salvar projeto
+        </Button>
       </div>
     </div>
   );

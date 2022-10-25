@@ -1,14 +1,13 @@
-import { Button } from 'components';
 import hljs from 'highlight.js';
 import { useEffect, useRef, useState } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { codeEditorRefState, codeEditorState, colorState, languageState } from 'atoms/codeEditorAtom';
+import { Button } from 'components';
+
 import styles from './CodeEditor.module.scss';
+
 import 'highlight.js/styles/github.css';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import {
-  codeEditorRefState,
-  colorState,
-  languageState,
-} from 'atoms/codeEditorAtom';
 
 export const CodeEditor = () => {
   const color = useRecoilValue(colorState);
@@ -16,12 +15,7 @@ export const CodeEditor = () => {
   const [showEditor, setShowEditor] = useState(true);
   const [buffer, setBuffer] = useState('');
   const codeEditorRef = useSetRecoilState(codeEditorRefState);
-  const [content, setContent] = useState(`const alura_challenge = () => { 
-  alert("awesome!"); 
-}
-
-alura_challenge();
-`);
+  const [content, setContent] = useRecoilState(codeEditorState);
 
   useEffect(() => {
     if (!showEditor) {
