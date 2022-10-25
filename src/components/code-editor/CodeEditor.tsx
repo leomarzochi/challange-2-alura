@@ -1,5 +1,5 @@
 import hljs from 'highlight.js';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { codeEditorRefState, codeEditorState, colorState, languageState } from 'atoms/codeEditorAtom';
@@ -21,7 +21,7 @@ export const CodeEditor = () => {
     if (!showEditor) {
       setContent(hljs.highlight(language.name, buffer).value);
     }
-  }, [language, showEditor, buffer]);
+  }, [language, showEditor, buffer, setContent]);
 
   const handleHighlight = () => {
     if (showEditor) {
